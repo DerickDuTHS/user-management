@@ -1,7 +1,9 @@
 <template>
-  <div class="user">这里是用户列表页面</div>
+  <div class="user"><UserView/></div>
 </template>
 
 <script lang="ts" setup>
 // TODO
+import UserView from "./components/UserView.vue";
+
 </script>
