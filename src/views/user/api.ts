@@ -2,14 +2,20 @@ import MockJs from "mockjs";
 
 export function delUserApi(params: { id: string }) {
   console.log("delUserApi", params.id);
-  return Promise.resolve({
-    success: true,
-    data: params.id,
-  });
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({success: true});
+    }, 3000)
+  })
+  // return Promise.resolve({
+  //   success: true,
+  //   data: params.id,
+  // });
 }
 
 export const getUserListApi = (params: any) => {
   console.log("getUserListApi", params);
+
   return Promise.resolve({
     success: true,
     data: {
@@ -21,11 +27,11 @@ export const getUserListApi = (params: any) => {
             email: "@email",
           },
         ],
-      }).list,
+      }).list.filter(it => it.name.includes(params.keyword)),
       total: 100,
     },
   });
-  //   return request.get('/product-cms/user', { params })
+    // return request.get('/product-cms/user', { params })
 };
 
 export const getUserDetailApi = (params: any) => {

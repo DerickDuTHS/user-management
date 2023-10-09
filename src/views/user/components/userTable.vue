@@ -1,6 +1,12 @@
 <template>
     <a-table :columns="columns" :data-source="data" @resizeColumn="handleResizeColumn">
-      
+      <template #headerCell="{ column }">
+        <template v-if="column.key === 'id'">
+          <span>
+            Name
+          </span>
+        </template>
+      </template>
   
       <template #bodyCell="{ column, record }">
          <template v-if="column.key === 'id'">
