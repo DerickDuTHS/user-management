@@ -23,11 +23,12 @@ export const getUserListApi = (params: any) => {
         [`list|${params.pageSize}`]: [
           {
             "id|+1": 1,
+            // "key|+1": 1,
             name: "@cname",
             email: "@email",
           },
         ],
-      }).list.filter(it => it.name.includes(params.keyword)),
+      }).list.map(it => ({...it, name: it.name + params.keyword})),
       total: 100,
     },
   });
@@ -40,6 +41,12 @@ export const getUserDetailApi = (params: any) => {
     success: true,
     data: {
       // TODO 自己mock数据，参考getUserListApi
+      userDetail: MockJs.mock({
+        id: params.id,
+        name: "@cname",
+        email: "@email",
+        password: /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#%^&*?]).{8,16}$/
+      })
     },
   });
 };
